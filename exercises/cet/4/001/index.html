@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CET-4 Style Practice · Reading + Listening Lab</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    background: #f5f7fb; color: #1e2a3a; line-height: 1.6;
+    padding: 20px 16px 60px;
+  }
+  .container {
+    max-width: 880px; margin: 0 auto; background: #fff;
+    border-radius: 28px; box-shadow: 0 12px 40px rgba(0, 20, 40, 0.08);
+    padding: 32px 28px 40px;
+  }
+  header { margin-bottom: 28px; border-bottom: 2px solid #e6ecf5; padding-bottom: 16px; }
+  h1 { font-size: 1.9rem; font-weight: 600; letter-spacing: -0.02em; color: #0b2545; }
+  h1 span {
+    background: linear-gradient(135deg, #1e5aa8, #2e7bd6);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subhead { font-size: 1rem; color: #5a6b82; margin-top: 4px; }
+  .badge {
+    display: inline-block; background: #e6eff9; color: #1e5aa8;
+    font-size: 0.75rem; font-weight: 600; padding: 2px 12px;
+    border-radius: 20px; letter-spacing: 0.3px; margin-right: 8px;
+  }
+  h2 {
+    font-size: 1.3rem; font-weight: 600; margin-top: 32px; margin-bottom: 10px;
+    color: #0b2545; display: flex; align-items: center; gap: 10px;
+  }
+  h2 .num {
+    background: #1e5aa8; color: #fff; font-size: 0.85rem;
+    width: 28px; height: 28px; border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .passage {
+    background: #f9fbfe; border-left: 4px solid #2e7bd6;
+    padding: 16px 20px; border-radius: 0 14px 14px 0;
+    margin-bottom: 16px; font-size: 0.98rem; color: #1f2e44;
+  }
+  .passage p { margin-bottom: 10px; }
+  .passage p:last-child { margin-bottom: 0; }
+  .question-block {
+    background: #fff; border: 1px solid #e2e9f2; border-radius: 14px;
+    padding: 16px 18px; margin-bottom: 14px; transition: border-color 0.2s;
+  }
+  .question-block:hover { border-color: #b8cce4; }
+  .question-text { font-weight: 500; margin-bottom: 8px; font-size: 0.98rem; }
+  .question-text .qnum { font-weight: 700; color: #1e5aa8; margin-right: 6px; }
+  .options { display: flex; flex-direction: column; gap: 6px; }
+  .option {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 6px 10px; border-radius: 10px; cursor: pointer;
+    transition: background 0.15s; font-size: 0.95rem;
+  }
+  .option:hover { background: #eef4fc; }
+  .option input[type="radio"] {
+    margin-top: 5px; accent-color: #1e5aa8; width: 16px; height: 16px;
+    flex-shrink: 0; cursor: pointer;
+  }
+  .option label { cursor: pointer; flex: 1; }
+  .option.correct { background: #e3f5e9; border-left: 3px solid #1e8a4c; }
+  .option.wrong { background: #fdeaea; border-left: 3px solid #c0392b; }
+  .option.correct label { font-weight: 500; color: #0e5c30; }
+  .option.wrong label { color: #8b1a1a; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 10px 24px; border: none; border-radius: 40px;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer;
+    transition: all 0.2s; background: #eef4fc; color: #1e5aa8;
+  }
+  .btn:hover { background: #dce8f8; }
+  .btn-primary { background: #1e5aa8; color: #fff; }
+  .btn-primary:hover { background: #16478a; box-shadow: 0 6px 16px rgba(30, 90, 168, 0.3); }
+  .btn-success { background: #1e8a4c; color: #fff; }
+  .btn-success:hover { background: #166b3a; box-shadow: 0 6px 16px rgba(30, 138, 76, 0.25); }
+  .btn-danger { background: #c0392b; color: #fff; }
+  .btn-danger:hover { background: #a93226; }
+  .btn-record {
+    background: #c0392b; color: #fff; border-radius: 50%;
+    width: 56px; height: 56px; padding: 0; font-size: 1.6rem;
+    box-shadow: 0 4px 12px rgba(192, 57, 43, 0.35);
+  }
+  .btn-record.recording { animation: pulse 1.2s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.6); }
+    70% { box-shadow: 0 0 0 16px rgba(192, 57, 43, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(192, 57, 43, 0); }
+  }
+  .btn-sm { padding: 6px 16px; font-size: 0.85rem; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .result-panel {
+    background: #f0f6fe; border-radius: 16px; padding: 18px 22px;
+    margin-top: 20px; display: none; border: 1px solid #cfe0f5;
+  }
+  .result-panel.show { display: block; }
+  .result-panel h3 { font-size: 1.1rem; margin-bottom: 6px; color: #0b2545; }
+  .score-big { font-size: 2.2rem; font-weight: 700; color: #1e5aa8; }
+  .score-big small { font-size: 1rem; font-weight: 400; color: #5a6b82; }
+  .lab-card {
+    background: #f9fbfe; border: 1px solid #e2e9f2;
+    border-radius: 18px; padding: 22px 24px; margin-top: 24px;
+  }
+  .lab-card h3 { font-size: 1.1rem; margin-bottom: 6px; color: #0b2545; }
+  .lab-card .hint { font-size: 0.88rem; color: #5a6b82; margin-bottom: 16px; }
+  .lab-controls {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    align-items: center; margin-bottom: 16px;
+  }
+  .lab-controls .btn { padding: 8px 18px; }
+  .status { font-size: 0.88rem; color: #5a6b82; min-height: 1.4em; }
+  .audio-player { margin-top: 12px; width: 100%; }
+  audio { width: 100%; border-radius: 40px; height: 48px; }
+  .timer {
+    font-variant-numeric: tabular-nums; font-weight: 600;
+    color: #c0392b; font-size: 1rem; min-width: 3.2em; text-align: center;
+  }
+  .record-row {
+    display: flex; align-items: center; gap: 16px;
+    flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .lab-extra { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e9f2; }
+  .lab-extra h4 { font-size: 0.95rem; color: #0b2545; margin-bottom: 8px; }
+  .lab-extra ul { list-style: none; font-size: 0.9rem; color: #3d4f66; }
+  .lab-extra li {
+    padding: 4px 0 4px 26px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231e5aa8' stroke-width='2'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpolyline points='12 6 12 12 16 14'/%3E%3C/svg%3E") left center no-repeat;
+  }
+  .take-row {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+    padding: 8px 10px; border: 1px solid #e2e9f2; border-radius: 12px;
+    margin-bottom: 8px; background: #fff;
+  }
+  .take-label {
+    font-weight: 600; font-size: 0.9rem; color: #1e5aa8; min-width: 140px;
+  }
+  .take-audio { display: none; }
+  .answer-key {
+    display: none; margin-top: 18px; background: #f9fbfe;
+    border: 1px solid #e2e9f2; border-radius: 14px;
+    padding: 16px 20px; font-size: 0.92rem;
+  }
+  .answer-key.show { display: block; }
+  .answer-key h4 { margin-bottom: 6px; color: #0b2545; }
+  .answer-key .ak-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 4px 12px; font-variant-numeric: tabular-nums;
+  }
+  .answer-key .ak-grid span { color: #1e5aa8; font-weight: 600; }
+  footer {
+    text-align: center; margin-top: 40px; font-size: 0.85rem;
+    color: #8a9bb0; border-top: 1px solid #e6ecf5; padding-top: 18px;
+  }
+  /* Progress panel */
+  .progress-card {
+    background: #f0f6fe; border: 1px solid #cfe0f5;
+    border-radius: 18px; padding: 22px 24px; margin-top: 24px;
+  }
+  .progress-card h3 { font-size: 1.1rem; margin-bottom: 6px; color: #0b2545; }
+  .progress-card .hint { font-size: 0.88rem; color: #5a6b82; margin-bottom: 16px; }
+  .progress-list { font-size: 0.92rem; margin-bottom: 16px; }
+  .progress-row {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    padding: 6px 10px; border-radius: 10px; background: #fff;
+    border: 1px solid #e2e9f2; margin-bottom: 6px;
+  }
+  .progress-row.best { border-left: 3px solid #1e8a4c; }
+  .progress-row .trial-num { font-weight: 700; color: #1e5aa8; min-width: 70px; }
+  .progress-row .trial-score { font-weight: 600; min-width: 90px; }
+  .progress-row .trial-time { color: #5a6b82; font-size: 0.85rem; }
+  .progress-row .trial-best { color: #1e8a4c; font-weight: 600; font-size: 0.85rem; }
+  .student-name-row {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    margin-bottom: 16px;
+  }
+  .student-name-row input {
+    padding: 8px 14px; border-radius: 30px; border: 1px solid #cfe0f5;
+    font-size: 0.9rem; background: #fff; color: #1e2a3a;
+    font-family: inherit; min-width: 200px;
+  }
+  @media (max-width: 600px) {
+    .container { padding: 20px 14px 28px; }
+    h1 { font-size: 1.4rem; }
+    .passage { padding: 12px 14px; font-size: 0.92rem; }
+    .question-block { padding: 12px 14px; }
+    .lab-card, .progress-card { padding: 16px; }
+    .btn { padding: 8px 16px; font-size: 0.88rem; }
+    .btn-record { width: 48px; height: 48px; font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1><span>CET-4 Style Practice</span> · Reading &amp; Listening Lab</h1>
+    <div class="subhead">
+      <span class="badge">New Set</span> Three reading passages · 15 MC questions · Play / Replay / Record / Save / Track progress
+    </div>
+  </header>
+
+  <!-- SECTION A -->
+  <h2><span class="num">A</span> Reading Comprehension (Passage 1)</h2>
+  <div class="passage">
+    <p>Many cities are now turning unused spaces into “pocket parks.” These are small green areas built on empty lots, rooftops, or even beside busy roads. They are designed to give people a quiet place to rest in the middle of a noisy city.</p>
+    <p>One pocket park in Singapore sits on the roof of a shopping centre. It has grass, small trees, and several benches. Office workers often go there during their lunch break to eat, read, or simply sit in the sun. The park also collects rainwater, which is used to water the plants.</p>
+    <p>Another example is in New York, where a former car park was turned into a garden. Local people grow vegetables and flowers there, and children come to learn how plants grow. The garden is cared for by volunteers, so it costs the city very little money.</p>
+    <p>Pocket parks are not just pretty. Studies show that people who spend even ten minutes in a green space feel calmer and can think more clearly. For crowded cities, these small parks may be the simplest way to improve daily life.</p>
+  </div>
+  <div id="sectionA-questions">
+    <div class="question-block" data-q="1" data-answer="B">
+      <div class="question-text"><span class="qnum">1.</span> What is a “pocket park” according to the passage?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q1" value="A"><label>A. A large national park outside the city.</label></label>
+        <label class="option"><input type="radio" name="q1" value="B"><label>B. A small green area built in unused city space.</label></label>
+        <label class="option"><input type="radio" name="q1" value="C"><label>C. A park that only children can use.</label></label>
+        <label class="option"><input type="radio" name="q1" value="D"><label>D. A car park with trees around it.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="2" data-answer="B">
+      <div class="question-text"><span class="qnum">2.</span> Where is the pocket park in Singapore located?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q2" value="A"><label>A. Beside a busy road.</label></label>
+        <label class="option"><input type="radio" name="q2" value="B"><label>B. On the roof of a shopping centre.</label></label>
+        <label class="option"><input type="radio" name="q2" value="C"><label>C. Inside an office building.</label></label>
+        <label class="option"><input type="radio" name="q2" value="D"><label>D. Next to a school.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="3" data-answer="C">
+      <div class="question-text"><span class="qnum">3.</span> Who takes care of the garden in New York?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q3" value="A"><label>A. The city government.</label></label>
+        <label class="option"><input type="radio" name="q3" value="B"><label>B. Local school teachers.</label></label>
+        <label class="option"><input type="radio" name="q3" value="C"><label>C. Volunteers.</label></label>
+        <label class="option"><input type="radio" name="q3" value="D"><label>D. Shop owners.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="4" data-answer="A">
+      <div class="question-text"><span class="qnum">4.</span> What does the passage say about spending time in green spaces?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q4" value="A"><label>A. It makes people feel calmer and think more clearly.</label></label>
+        <label class="option"><input type="radio" name="q4" value="B"><label>B. It helps people earn more money.</label></label>
+        <label class="option"><input type="radio" name="q4" value="C"><label>C. It is only good for children.</label></label>
+        <label class="option"><input type="radio" name="q4" value="D"><label>D. It takes at least one hour to have any effect.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="5" data-answer="B">
+      <div class="question-text"><span class="qnum">5.</span> What is the main idea of the passage?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q5" value="A"><label>A. Cities should build more shopping centres.</label></label>
+        <label class="option"><input type="radio" name="q5" value="B"><label>B. Pocket parks are a simple way to improve city life.</label></label>
+        <label class="option"><input type="radio" name="q5" value="C"><label>C. Rainwater collection is difficult in cities.</label></label>
+        <label class="option"><input type="radio" name="q5" value="D"><label>D. New York has the best parks in the world.</label></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION B -->
+  <h2><span class="num">B</span> Reading Comprehension (Passage 2)</h2>
+  <div class="passage">
+    <p>Mia had always been afraid of the water. As a child, she refused to go near the sea, and even the sound of waves made her nervous. Her friends loved swimming, but Mia would sit on the beach and watch.</p>
+    <p>Everything changed during a school trip to the coast. The teacher announced that everyone would try kayaking (皮划艇). Mia felt sick with fear. But her best friend Lily sat beside her and said, “We’ll do it together. If you fall, I’ll be right there.”</p>
+    <p>The first ten minutes were terrible. Mia’s hands shook, and she kept looking down at the dark water. Then Lily started singing an old song they both knew. Slowly, Mia began to paddle in time with the song. She stopped looking down and started looking ahead — at the cliffs, the birds, the open sky.</p>
+    <p>By the end of the afternoon, Mia was laughing. She had not fallen once. More importantly, she had discovered that fear often grows in silence, and shrinks when someone stays beside you.</p>
+  </div>
+  <div id="sectionB-questions">
+    <div class="question-block" data-q="6" data-answer="B">
+      <div class="question-text"><span class="qnum">6.</span> What was Mia afraid of as a child?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q6" value="A"><label>A. Singing in public.</label></label>
+        <label class="option"><input type="radio" name="q6" value="B"><label>B. The water and the sea.</label></label>
+        <label class="option"><input type="radio" name="q6" value="C"><label>C. School trips.</label></label>
+        <label class="option"><input type="radio" name="q6" value="D"><label>D. Her best friend Lily.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="7" data-answer="C">
+      <div class="question-text"><span class="qnum">7.</span> What activity did the teacher announce during the trip?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q7" value="A"><label>A. Swimming races.</label></label>
+        <label class="option"><input type="radio" name="q7" value="B"><label>B. A boat race.</label></label>
+        <label class="option"><input type="radio" name="q7" value="C"><label>C. Kayaking.</label></label>
+        <label class="option"><input type="radio" name="q7" value="D"><label>D. A beach clean-up.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="8" data-answer="C">
+      <div class="question-text"><span class="qnum">8.</span> What did Lily do to help Mia?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q8" value="A"><label>A. She paddled Mia’s kayak for her.</label></label>
+        <label class="option"><input type="radio" name="q8" value="B"><label>B. She told the teacher Mia was sick.</label></label>
+        <label class="option"><input type="radio" name="q8" value="C"><label>C. She sang a song with her.</label></label>
+        <label class="option"><input type="radio" name="q8" value="D"><label>D. She took Mia back to the beach.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="9" data-answer="A">
+      <div class="question-text"><span class="qnum">9.</span> The underlined word “shrinks” in the last paragraph probably means</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q9" value="A"><label>A. becomes smaller</label></label>
+        <label class="option"><input type="radio" name="q9" value="B"><label>B. becomes louder</label></label>
+        <label class="option"><input type="radio" name="q9" value="C"><label>C. moves quickly</label></label>
+        <label class="option"><input type="radio" name="q9" value="D"><label>D. disappears suddenly</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="10" data-answer="B">
+      <div class="question-text"><span class="qnum">10.</span> What lesson does the story teach?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q10" value="A"><label>A. Never go on school trips.</label></label>
+        <label class="option"><input type="radio" name="q10" value="B"><label>B. Fear is easier to face with a friend beside you.</label></label>
+        <label class="option"><input type="radio" name="q10" value="C"><label>C. Kayaking is the safest water sport.</label></label>
+        <label class="option"><input type="radio" name="q10" value="D"><label>D. Singing helps you paddle faster.</label></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION C -->
+  <h2><span class="num">C</span> Reading Comprehension (Passage 3)</h2>
+  <div class="passage">
+    <p>For thousands of years, farmers have grown food. Today, however, much of our food travels long distances before it reaches our plates. This has led to a growing interest in “urban farming” — growing food in or near cities.</p>
+    <p>Urban farms can be found in many surprising places. Some use rooftops, where vegetables grow in boxes under the sun. Others use old factories, where plants grow under special lights without soil. These methods use much less water than traditional farms and can produce food all year round.</p>
+    <p>Supporters say urban farming has clear benefits. Fresh food reaches customers in hours, not days, so it tastes better and keeps more vitamins. It also creates jobs and brings neighbours together. In some cities, schools use small farms to teach children where food comes from.</p>
+    <p>However, urban farming also faces problems. Space is expensive, and artificial light uses a lot of electricity. Some experts warn that urban farms cannot replace traditional agriculture. Still, they agree that even small city farms can make our food system healthier and more connected to daily life.</p>
+  </div>
+  <div id="sectionC-questions">
+    <div class="question-block" data-q="11" data-answer="A">
+      <div class="question-text"><span class="qnum">11.</span> What is “urban farming”?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q11" value="A"><label>A. Farming in or near cities.</label></label>
+        <label class="option"><input type="radio" name="q11" value="B"><label>B. Farming only on rooftops.</label></label>
+        <label class="option"><input type="radio" name="q11" value="C"><label>C. Farming without any water.</label></label>
+        <label class="option"><input type="radio" name="q11" value="D"><label>D. Farming food that travels long distances.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="12" data-answer="B">
+      <div class="question-text"><span class="qnum">12.</span> Which of the following is a method used by urban farms?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q12" value="A"><label>A. Growing plants in the sea.</label></label>
+        <label class="option"><input type="radio" name="q12" value="B"><label>B. Growing plants under special lights without soil.</label></label>
+        <label class="option"><input type="radio" name="q12" value="C"><label>C. Using more water than traditional farms.</label></label>
+        <label class="option"><input type="radio" name="q12" value="D"><label>D. Growing food only in winter.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="13" data-answer="C">
+      <div class="question-text"><span class="qnum">13.</span> What is one benefit of urban farming mentioned in the passage?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q13" value="A"><label>A. It makes food cheaper to export.</label></label>
+        <label class="option"><input type="radio" name="q13" value="B"><label>B. It uses more land.</label></label>
+        <label class="option"><input type="radio" name="q13" value="C"><label>C. Fresh food reaches customers quickly.</label></label>
+        <label class="option"><input type="radio" name="q13" value="D"><label>D. It replaces all traditional farms.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="14" data-answer="B">
+      <div class="question-text"><span class="qnum">14.</span> What problem does urban farming face?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q14" value="A"><label>A. There are no customers.</label></label>
+        <label class="option"><input type="radio" name="q14" value="B"><label>B. Space is expensive and artificial light uses electricity.</label></label>
+        <label class="option"><input type="radio" name="q14" value="C"><label>C. Vegetables cannot grow in cities.</label></label>
+        <label class="option"><input type="radio" name="q14" value="D"><label>D. Schools refuse to use small farms.</label></label>
+      </div>
+    </div>
+    <div class="question-block" data-q="15" data-answer="C">
+      <div class="question-text"><span class="qnum">15.</span> What is the writer’s attitude toward urban farming?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="q15" value="A"><label>A. It is completely useless.</label></label>
+        <label class="option"><input type="radio" name="q15" value="B"><label>B. It should replace all traditional farming.</label></label>
+        <label class="option"><input type="radio" name="q15" value="C"><label>C. It has value, though it cannot replace traditional agriculture.</label></label>
+        <label class="option"><input type="radio" name="q15" value="D"><label>D. It is only good for schools.</label></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-group" style="margin-top: 20px;">
+    <button class="btn btn-primary" id="checkBtn">✓ Check Answers</button>
+    <button class="btn" id="resetBtn">↺ Reset</button>
+    <button class="btn" id="showKeyBtn">🔑 Show Answer Key</button>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <h3>Your Score</h3>
+    <div class="score-big" id="scoreDisplay">0 <small>/ 15</small></div>
+    <div id="scoreMessage" style="color: #3d4f66; font-size: 0.95rem;"></div>
+  </div>
+
+  <div class="answer-key" id="answerKey">
+    <h4>Answer Key</h4>
+    <div class="ak-grid">
+      <div>1. <span>B</span></div><div>2. <span>B</span></div><div>3. <span>C</span></div><div>4. <span>A</span></div><div>5. <span>B</span></div>
+      <div>6. <span>B</span></div><div>7. <span>C</span></div><div>8. <span>C</span></div><div>9. <span>A</span></div><div>10. <span>B</span></div>
+      <div>11. <span>A</span></div><div>12. <span>B</span></div><div>13. <span>C</span></div><div>14. <span>B</span></div><div>15. <span>C</span></div>
+    </div>
+  </div>
+
+  <!-- LISTENING LAB -->
+  <h2 style="margin-top: 40px;">🎧 Listening &amp; Speaking Lab</h2>
+  <div class="lab-card">
+    <h3>Play · Replay · Record · Save</h3>
+    <p class="hint">Press Play to hear the model reading. Use Replay to hear it again, and Stop to pause. Then record your own voice and compare.</p>
+    <div style="margin-bottom: 16px;">
+      <label for="passageSelect" style="font-weight: 500; font-size: 0.95rem; margin-right: 10px;">Choose a passage to practise:</label>
+      <select id="passageSelect" style="padding: 8px 14px; border-radius: 30px; border: 1px solid #cfe0f5; font-size: 0.9rem; background: #fff; color: #1e2a3a; cursor: pointer; max-width: 100%;">
+        <option value="A">Passage A — Pocket Parks</option>
+        <option value="B">Passage B — Mia &amp; Kayaking</option>
+        <option value="C">Passage C — Urban Farming</option>
+      </select>
+    </div>
+    <div id="labText" class="passage" style="background: #fff; border-left-color: #1e8a4c; font-size: 0.95rem;"></div>
+    <div class="lab-controls">
+      <button class="btn btn-primary" id="playBtn">▶ Play</button>
+      <button class="btn" id="replayBtn">⟲ Replay</button>
+      <button class="btn" id="stopBtn" disabled>■ Stop</button>
+      <span class="status" id="playStatus">Ready.</span>
+    </div>
+    <div style="margin-top: 8px; font-size: 0.85rem;">
+      <a id="downloadModelLink" href="#" download style="color: #1e5aa8;">📥 Download model audio for offline practice</a>
+    </div>
+    <div class="record-row" style="margin-top: 20px;">
+      <button class="btn btn-record" id="recordBtn" title="Start / Stop recording">●</button>
+      <span class="timer" id="timerDisplay">00:00</span>
+      <button class="btn btn-success btn-sm" id="saveRecordingBtn" disabled>💾 Save latest take</button>
+      <button class="btn btn-sm" id="clearRecordingBtn" disabled>🗑 Clear all</button>
+    </div>
+    <div class="status" id="recordStatus">Microphone not active.</div>
+    <div style="margin-top: 16px;">
+      <h4 style="font-size: 0.95rem; color: #0b2545; margin-bottom: 8px;">Your takes</h4>
+      <div id="takesEmpty" class="status">No recordings yet. Press ● to record your first take.</div>
+      <div id="takesList"></div>
+    </div>
+    <div class="lab-extra">
+      <h4>How to use this lab</h4>
+      <ul>
+        <li><strong>Play</strong> — listen once with eyes closed. Focus on the feeling, not the meaning.</li>
+        <li><strong>Replay</strong> — follow the text with your finger. Whisper along on the third listen.</li>
+        <li><strong>Record</strong> — read aloud with emotion, as if telling a friend a story.</li>
+        <li><strong>Replay your recording</strong> — compare with the model. Where did you rush? Where was it flat?</li>
+        <li><strong>Save</strong> — each take can be downloaded. Keep a progress archive.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROGRESS PANEL (NEW) -->
+  <h2 style="margin-top: 40px;">📊 Progress Tracker</h2>
+  <div class="progress-card">
+    <h3>Your trials</h3>
+    <p class="hint">Every time you click Check Answers, a trial is recorded. Try as many times as you like — the goal is 100%. When you finish, you can download your progress and also send it to your teacher.</p>
+
+    <div class="student-name-row">
+      <label for="studentName" style="font-weight: 500; font-size: 0.92rem;">Your name:</label>
+      <input type="text" id="studentName" placeholder="e.g. Vivian" autocomplete="off">
+    </div>
+
+    <div id="progressEmpty" class="status">No trials yet. Answer the questions and click Check Answers to start tracking.</div>
+    <div id="progressList" class="progress-list"></div>
+
+    <div class="btn-group">
+      <button class="btn btn-primary" id="downloadCsvBtn">📄 Download CSV</button>
+      <button class="btn btn-success" id="downloadZipBtn">📦 Download all (ZIP)</button>
+      <button class="btn" id="emailBtn">✉️ Email to teacher</button>
+      <button class="btn btn-danger" id="clearHistoryBtn">🗑 Clear history</button>
+    </div>
+    <div class="status" id="progressStatus" style="margin-top: 10px;"></div>
+  </div>
+
+  <footer>
+    CET-4 Style Practice · New Set · Reading &amp; Listening Lab — share the link, practise anywhere.
+  </footer>
+
+</div>
+
+<!-- JSZip for the ZIP download -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ==========================================================
+     CONFIGURATION
+     ========================================================== */
+  const EXERCISE_ID = '2026-11-05_pocket-parks';
+  const TEACHER_EMAIL = 'your-teacher-email@example.com';  // <-- change this
+  const STORAGE_KEY = 'cet4_progress_' + EXERCISE_ID;
+
+  /* ==========================================================
+     PASSAGE TEXTS
+     ========================================================== */
+  const passages = {
+    A: `Many cities are now turning unused spaces into pocket parks. These are small green areas built on empty lots, rooftops, or even beside busy roads. They are designed to give people a quiet place to rest in the middle of a noisy city.
+
+One pocket park in Singapore sits on the roof of a shopping centre. It has grass, small trees, and several benches. Office workers often go there during their lunch break to eat, read, or simply sit in the sun. The park also collects rainwater, which is used to water the plants.
+
+Another example is in New York, where a former car park was turned into a garden. Local people grow vegetables and flowers there, and children come to learn how plants grow. The garden is cared for by volunteers, so it costs the city very little money.
+
+Pocket parks are not just pretty. Studies show that people who spend even ten minutes in a green space feel calmer and can think more clearly. For crowded cities, these small parks may be the simplest way to improve daily life.`,
+
+    B: `Mia had always been afraid of the water. As a child, she refused to go near the sea, and even the sound of waves made her nervous. Her friends loved swimming, but Mia would sit on the beach and watch.
+
+Everything changed during a school trip to the coast. The teacher announced that everyone would try kayaking. Mia felt sick with fear. But her best friend Lily sat beside her and said, We'll do it together. If you fall, I'll be right there.
+
+The first ten minutes were terrible. Mia's hands shook, and she kept looking down at the dark water. Then Lily started singing an old song they both knew. Slowly, Mia began to paddle in time with the song. She stopped looking down and started looking ahead — at the cliffs, the birds, the open sky.
+
+By the end of the afternoon, Mia was laughing. She had not fallen once. More importantly, she had discovered that fear often grows in silence, and shrinks when someone stays beside you.`,
+
+    C: `For thousands of years, farmers have grown food. Today, however, much of our food travels long distances before it reaches our plates. This has led to a growing interest in urban farming — growing food in or near cities.
+
+Urban farms can be found in many surprising places. Some use rooftops, where vegetables grow in boxes under the sun. Others use old factories, where plants grow under special lights without soil. These methods use much less water than traditional farms and can produce food all year round.
+
+Supporters say urban farming has clear benefits. Fresh food reaches customers in hours, not days, so it tastes better and keeps more vitamins. It also creates jobs and brings neighbours together. In some cities, schools use small farms to teach children where food comes from.
+
+However, urban farming also faces problems. Space is expensive, and artificial light uses a lot of electricity. Some experts warn that urban farms cannot replace traditional agriculture. Still, they agree that even small city farms can make our food system healthier and more connected to daily life.`
+  };
+
+  /* ==========================================================
+     DOM REFERENCES
+     ========================================================== */
+  const passageSelect = document.getElementById('passageSelect');
+  const labText = document.getElementById('labText');
+  const playBtn = document.getElementById('playBtn');
+  const replayBtn = document.getElementById('replayBtn');
+  const stopBtn = document.getElementById('stopBtn');
+  const playStatus = document.getElementById('playStatus');
+  const recordBtn = document.getElementById('recordBtn');
+  const timerDisplay = document.getElementById('timerDisplay');
+  const saveRecordingBtn = document.getElementById('saveRecordingBtn');
+  const clearRecordingBtn = document.getElementById('clearRecordingBtn');
+  const recordStatus = document.getElementById('recordStatus');
+  const takesList = document.getElementById('takesList');
+  const takesEmpty = document.getElementById('takesEmpty');
+  const downloadModelLink = document.getElementById('downloadModelLink');
+
+  /* ==========================================================
+     MODEL AUDIO (MP3) + FALLBACKS
+     ========================================================== */
+  const modelAudio = {
+    A: 'model_A.mp3',
+    B: 'model_B.mp3',
+    C: 'model_C.mp3'
+  };
+
+  const modelPlayer = new Audio();
+  let isModelPlaying = false;
+
+  function getSelectedText() {
+    return passages[passageSelect.value] || '';
+  }
+
+  function updateLabText() {
+    labText.textContent = getSelectedText();
+    stopModelAudio();
+    updateDownloadLink();
+    playStatus.textContent = 'Ready.';
+  }
+
+  function stopModelAudio() {
+    if (!modelPlayer.paused) modelPlayer.pause();
+    modelPlayer.currentTime = 0;
+    isModelPlaying = false;
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+    stopBtn.disabled = true;
+  }
+
+  function stopSpeaking() {
+    stopModelAudio();
+    playStatus.textContent = 'Stopped.';
+  }
+
+  function showAudioFailureOptions() {
+    playStatus.innerHTML =
+      '⚠️ Model audio couldn\'t load. ' +
+      '<button id="trySpeechBtn" class="btn btn-sm" style="margin-left:6px;">Try speech synthesis</button> ' +
+      '<a id="fallbackDownloadLink" href="#" class="btn btn-sm" style="margin-left:6px;">📥 Download MP3</a>';
+    const tryBtn = document.getElementById('trySpeechBtn');
+    if (tryBtn) tryBtn.addEventListener('click', function() {
+      playStatus.textContent = 'Playing with speech synthesis…';
+      speakPassage();
+    });
+    const dl = document.getElementById('fallbackDownloadLink');
+    if (dl) {
+      const key = passageSelect.value;
+      dl.href = modelAudio[key] || '#';
+      dl.download = 'model_' + key + '.mp3';
+    }
+  }
+
+  function playModelAudio() {
+    const key = passageSelect.value;
+    const src = modelAudio[key];
+    stopModelAudio();
+    if (!src) { speakPassage(); return; }
+    modelPlayer.src = src;
+    const p = modelPlayer.play();
+    if (p !== undefined) {
+      p.then(function() {
+        isModelPlaying = true;
+        stopBtn.disabled = false;
+        playStatus.textContent = '▶ Playing model audio…';
+      }).catch(function() {
+        showAudioFailureOptions();
+      });
+    }
+  }
+
+  function speakPassage() {
+    if (!window.speechSynthesis) {
+      playStatus.textContent = 'Audio not available and speech synthesis not supported.';
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const text = getSelectedText();
+    if (!text) return;
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 0.92; u.pitch = 1.0; u.lang = 'en-US';
+    const voices = window.speechSynthesis.getVoices();
+    const preferred = voices.find(v => v.lang.startsWith('en') && v.name.includes('Google')) ||
+                      voices.find(v => v.lang.startsWith('en-US')) ||
+                      voices.find(v => v.lang.startsWith('en'));
+    if (preferred) u.voice = preferred;
+    u.onstart = function() {
+      isModelPlaying = true; stopBtn.disabled = false;
+      playStatus.textContent = '▶ Playing (speech synthesis fallback)…';
+    };
+    u.onend = function() {
+      isModelPlaying = false; stopBtn.disabled = true;
+      playStatus.textContent = 'Finished.';
+    };
+    u.onerror = function(e) {
+      isModelPlaying = false; stopBtn.disabled = true;
+      console.warn('Speech synthesis error:', e);
+      playStatus.innerHTML =
+        '⚠️ Your browser blocked the fallback voice. ' +
+        '<a id="errDownloadLink" href="#" class="btn btn-sm" style="margin-left:6px;">📥 Download the MP3 instead</a>';
+      const dl = document.getElementById('errDownloadLink');
+      if (dl) {
+        const key = passageSelect.value;
+        dl.href = modelAudio[key] || '#';
+        dl.download = 'model_' + key + '.mp3';
+      }
+    };
+    window.speechSynthesis.speak(u);
+  }
+
+  modelPlayer.addEventListener('ended', function() {
+    isModelPlaying = false; stopBtn.disabled = true;
+    playStatus.textContent = 'Finished.';
+  });
+  modelPlayer.addEventListener('error', function() { showAudioFailureOptions(); });
+  if (window.speechSynthesis) window.speechSynthesis.onvoiceschanged = function() {};
+
+  playBtn.addEventListener('click', playModelAudio);
+  replayBtn.addEventListener('click', playModelAudio);
+  stopBtn.addEventListener('click', stopSpeaking);
+  passageSelect.addEventListener('change', updateLabText);
+
+  function updateDownloadLink() {
+    const key = passageSelect.value;
+    const src = modelAudio[key];
+    if (src) {
+      downloadModelLink.href = src;
+      downloadModelLink.download = 'model_' + key + '.mp3';
+      downloadModelLink.style.display = 'inline';
+    } else {
+      downloadModelLink.style.display = 'none';
+    }
+  }
+
+  /* ==========================================================
+     TAKE-LIST RECORDER
+     ========================================================== */
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  let stream = null;
+  let recordingTimer = null;
+  let recordingSeconds = 0;
+  let isRecording = false;
+  let activeMimeType = 'audio/webm';
+
+  const takes = [];
+  let nextTakeId = 1;
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60).toString().padStart(2, '0');
+    const s = (sec % 60).toString().padStart(2, '0');
+    return m + ':' + s;
+  }
+  function updateTimerDisplay() { timerDisplay.textContent = formatTime(recordingSeconds); }
+  function startTimer() {
+    recordingSeconds = 0; updateTimerDisplay();
+    recordingTimer = setInterval(function() { recordingSeconds++; updateTimerDisplay(); }, 1000);
+  }
+  function stopTimer() {
+    if (recordingTimer) { clearInterval(recordingTimer); recordingTimer = null; }
+  }
+  function stopMic() {
+    if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; }
+  }
+  function resetRecordingUI() {
+    isRecording = false;
+    recordBtn.classList.remove('recording');
+    recordBtn.textContent = '●';
+    recordStatus.textContent = 'Microphone not active.';
+    stopTimer(); updateTimerDisplay(); stopMic();
+  }
+
+  function renderTakes() {
+    takesList.innerHTML = '';
+    if (takes.length === 0) { takesEmpty.style.display = 'block'; return; }
+    takesEmpty.style.display = 'none';
+    takes.forEach(function(take, index) {
+      const row = document.createElement('div');
+      row.className = 'take-row';
+      row.innerHTML =
+        '<span class="take-label">Take ' + (index + 1) + ' · ' + take.label + '</span>' +
+        '<button class="btn btn-sm take-play" data-id="' + take.id + '">▶ Play</button>' +
+        '<button class="btn btn-sm take-save" data-id="' + take.id + '">💾 Save</button>' +
+        '<button class="btn btn-sm take-delete" data-id="' + take.id + '">🗑 Delete</button>' +
+        '<audio class="take-audio" src="' + take.url + '" preload="none"></audio>';
+      takesList.appendChild(row);
+    });
+    takesList.querySelectorAll('.take-play').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const take = takes.find(t => t.id === Number(btn.dataset.id));
+        if (!take) return;
+        takesList.querySelectorAll('.take-audio').forEach(function(a) { a.pause(); a.currentTime = 0; });
+        btn.parentElement.querySelector('.take-audio').play();
+      });
+    });
+    takesList.querySelectorAll('.take-save').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const take = takes.find(t => t.id === Number(btn.dataset.id));
+        if (!take) return;
+        downloadBlob(take.url, 'CET4_take_' + passageSelect.value + '_' + take.id + '_' +
+          take.label.replace(/:/g, '-') + '.' + take.ext);
+      });
+    });
+    takesList.querySelectorAll('.take-delete').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const id = Number(btn.dataset.id);
+        const idx = takes.findIndex(t => t.id === id);
+        if (idx === -1) return;
+        URL.revokeObjectURL(takes[idx].url);
+        takes.splice(idx, 1);
+        renderTakes();
+        recordStatus.textContent = 'Take deleted.';
+        if (takes.length === 0) {
+          saveRecordingBtn.disabled = true;
+          clearRecordingBtn.disabled = true;
+        }
+      });
+    });
+  }
+
+  function pickMimeType() {
+    if (!window.MediaRecorder) return null;
+    const candidates = [
+      { mime: 'audio/webm;codecs=opus', ext: 'webm' },
+      { mime: 'audio/webm', ext: 'webm' },
+      { mime: 'audio/mp4', ext: 'm4a' },
+      { mime: 'audio/aac', ext: 'aac' },
+      { mime: 'audio/ogg;codecs=opus', ext: 'ogg' }
+    ];
+    for (let i = 0; i < candidates.length; i++) {
+      try { if (MediaRecorder.isTypeSupported(candidates[i].mime)) return candidates[i]; } catch (e) {}
+    }
+    return null;
+  }
+
+  function startRecording() {
+    if (isRecording) {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+      return;
+    }
+    recordedChunks = [];
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      recordStatus.textContent = 'Your browser does not support recording.';
+      return;
+    }
+    const chosen = pickMimeType();
+    if (!chosen) {
+      recordStatus.textContent = 'Your browser cannot record audio. Please type what you read aloud and send it to your teacher.';
+      resetRecordingUI(); return;
+    }
+    activeMimeType = chosen.mime;
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(function(s) {
+        stream = s;
+        mediaRecorder = new MediaRecorder(stream, { mimeType: activeMimeType });
+        mediaRecorder.ondataavailable = function(e) {
+          if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+        };
+        mediaRecorder.onstop = function() {
+          const blob = new Blob(recordedChunks, { type: activeMimeType });
+          const url = URL.createObjectURL(blob);
+          takes.push({
+            id: nextTakeId++,
+            url: url,
+            blob: blob,
+            label: formatTime(recordingSeconds),
+            ext: chosen.ext,
+            passage: passageSelect.value
+          });
+          renderTakes();
+          recordStatus.textContent = 'Take saved. Press ● to record another, or ▶ to listen.';
+          resetRecordingUI();
+          saveRecordingBtn.disabled = false;
+          clearRecordingBtn.disabled = false;
+        };
+        mediaRecorder.onerror = function() {
+          recordStatus.textContent = 'Recording error.';
+          resetRecordingUI();
+        };
+        mediaRecorder.start();
+        isRecording = true;
+        recordBtn.classList.add('recording');
+        recordBtn.textContent = '■';
+        recordStatus.textContent = '● Recording… speak clearly.';
+        startTimer();
+      })
+      .catch(function(err) {
+        recordStatus.textContent = 'Microphone permission denied or not available.';
+        console.warn('Mic error:', err);
+      });
+  }
+  recordBtn.addEventListener('click', startRecording);
+
+  saveRecordingBtn.addEventListener('click', function() {
+    if (takes.length === 0) return;
+    const take = takes[takes.length - 1];
+    downloadBlob(take.url, 'CET4_take_' + take.passage + '_' + take.id + '_' +
+      take.label.replace(/:/g, '-') + '.' + take.ext);
+  });
+
+  clearRecordingBtn.addEventListener('click', function() {
+    if (isRecording) {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+      return;
+    }
+    if (takes.length === 0) { recordStatus.textContent = 'Nothing to clear.'; return; }
+    if (!confirm('Delete all takes? This cannot be undone.')) return;
+    takes.forEach(function(t) { URL.revokeObjectURL(t.url); });
+    takes.length = 0;
+    renderTakes();
+    recordStatus.textContent = 'All takes cleared.';
+    saveRecordingBtn.disabled = true;
+    clearRecordingBtn.disabled = true;
+  });
+
+  window.addEventListener('beforeunload', function() {
+    stopMic();
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
+  });
+
+  /* ==========================================================
+     CHECK ANSWERS + TRIAL RECORDING
+     ========================================================== */
+  const checkBtn = document.getElementById('checkBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const showKeyBtn = document.getElementById('showKeyBtn');
+  const resultPanel = document.getElementById('resultPanel');
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  const scoreMessage = document.getElementById('scoreMessage');
+  const answerKey = document.getElementById('answerKey');
+
+  const totalQuestions = 15;
+
+  function checkAnswers() {
+    let score = 0, answered = 0;
+    const correctList = [], wrongList = [], unansweredList = [];
+
+    document.querySelectorAll('.option').forEach(function(el) { el.classList.remove('correct', 'wrong'); });
+
+    for (let i = 1; i <= totalQuestions; i++) {
+      const block = document.querySelector('.question-block[data-q="' + i + '"]');
+      if (!block) continue;
+      const correct = block.getAttribute('data-answer');
+      const radios = block.querySelectorAll('input[name="q' + i + '"]');
+      let selected = null;
+      radios.forEach(function(r) { if (r.checked) selected = r.value; });
+      const options = block.querySelectorAll('.option');
+
+      if (selected) {
+        answered++;
+        options.forEach(function(opt) {
+          const input = opt.querySelector('input');
+          if (input.value === selected) {
+            if (selected === correct) { opt.classList.add('correct'); score++; }
+            else { opt.classList.add('wrong'); }
+          }
+          if (input.value === correct && selected !== correct) opt.classList.add('correct');
+        });
+        if (selected === correct) correctList.push('q' + i + ':' + selected);
+        else wrongList.push('q' + i + ':' + selected + '(correct ' + correct + ')');
+      } else {
+        unansweredList.push('q' + i);
+        options.forEach(function(opt) {
+          const input = opt.querySelector('input');
+          if (input.value === correct) opt.classList.add('correct');
+        });
+      }
+    }
+
+    resultPanel.classList.add('show');
+    scoreDisplay.innerHTML = score + ' <small>/ ' + totalQuestions + '</small>';
+
+    let message = '';
+    if (score === totalQuestions) message = 'Perfect score! Excellent reading comprehension. 🌟';
+    else if (score >= 12) message = 'Great job! You have a strong grasp of these passages.';
+    else if (score >= 8) message = 'Good effort. Review the highlighted answers and try again.';
+    else message = 'Keep practising. Read each passage again carefully, then retry.';
+    if (answered < totalQuestions) message += ' (You answered ' + answered + ' of ' + totalQuestions + ' questions.)';
+    scoreMessage.textContent = message;
+
+    // Record this trial
+    recordTrial(score, correctList, wrongList, unansweredList);
+  }
+  checkBtn.addEventListener('click', checkAnswers);
+
+  resetBtn.addEventListener('click', function() {
+    document.querySelectorAll('input[type="radio"]').forEach(function(r) { r.checked = false; });
+    document.querySelectorAll('.option').forEach(function(el) { el.classList.remove('correct', 'wrong'); });
+    resultPanel.classList.remove('show');
+    scoreDisplay.innerHTML = '0 <small>/ ' + totalQuestions + '</small>';
+    scoreMessage.textContent = '';
+  });
+
+  showKeyBtn.addEventListener('click', function() {
+    answerKey.classList.toggle('show');
+    showKeyBtn.textContent = answerKey.classList.contains('show') ? '🔑 Hide Answer Key' : '🔑 Show Answer Key';
+  });
+
+  /* ==========================================================
+     PROGRESS TRACKER — CSV + ZIP + EMAIL
+     ========================================================== */
+  const studentNameInput = document.getElementById('studentName');
+  const progressEmpty = document.getElementById('progressEmpty');
+  const progressList = document.getElementById('progressList');
+  const progressStatus = document.getElementById('progressStatus');
+  const downloadCsvBtn = document.getElementById('downloadCsvBtn');
+  const downloadZipBtn = document.getElementById('downloadZipBtn');
+  const emailBtn = document.getElementById('emailBtn');
+  const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+  let trials = [];  // array of trial objects
+
+  function loadTrials() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) trials = JSON.parse(raw) || [];
+    } catch (e) { trials = []; }
+    // Restore name
+    try {
+      const savedName = localStorage.getItem(STORAGE_KEY + '_name');
+      if (savedName && studentNameInput) studentNameInput.value = savedName;
+    } catch (e) {}
+    renderProgress();
+  }
+
+  function saveTrials() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(trials)); } catch (e) {}
+  }
+
+  function saveName() {
+    try { localStorage.setItem(STORAGE_KEY + '_name', studentNameInput.value.trim()); } catch (e) {}
+  }
+
+  if (studentNameInput) studentNameInput.addEventListener('input', saveName);
+
+  function recordTrial(score, correctList, wrongList, unansweredList) {
+    const now = new Date();
+    const trial = {
+      trialNumber: trials.length + 1,
+      date: now.toISOString().slice(0, 10),
+      time: now.toTimeString().slice(0, 5),
+      timestamp: now.toISOString(),
+      score: score,
+      total: totalQuestions,
+      percentage: Math.round((score / totalQuestions) * 100),
+      correct: correctList.join(';'),
+      wrong: wrongList.join(';'),
+      unanswered: unansweredList.join(';'),
+      passage: passageSelect.value,
+      takesCount: takes.length
+    };
+    trials.push(trial);
+    saveTrials();
+    renderProgress();
+  }
+
+  function renderProgress() {
+    if (trials.length === 0) {
+      progressEmpty.style.display = 'block';
+      progressList.innerHTML = '';
+      return;
+    }
+    progressEmpty.style.display = 'none';
+    const bestScore = Math.max.apply(null, trials.map(t => t.score));
+    progressList.innerHTML = '';
+    trials.forEach(function(t, i) {
+      const row = document.createElement('div');
+      row.className = 'progress-row' + (t.score === bestScore ? ' best' : '');
+      row.innerHTML =
+        '<span class="trial-num">Trial ' + t.trialNumber + '</span>' +
+        '<span class="trial-score">' + t.score + '/' + t.total + ' (' + t.percentage + '%)</span>' +
+        '<span class="trial-time">' + t.date + ' · ' + t.time + '</span>' +
+        (t.score === bestScore ? '<span class="trial-best">✓ Best</span>' : '');
+      progressList.appendChild(row);
+    });
+  }
+
+  function getStudentName() {
+    const n = (studentNameInput && studentNameInput.value.trim()) || 'student';
+    return n.replace(/[^A-Za-z0-9_-]/g, '_');
+  }
+
+  function buildCsv() {
+    const header = [
+      'student','exercise','trial','date','time','score','total','percentage',
+      'correct_answers','wrong_answers','unanswered','takes_count','passage'
+    ];
+    const rows = [header.join(',')];
+    const name = (studentNameInput && studentNameInput.value.trim()) || '';
+    trials.forEach(function(t) {
+      rows.push([
+        csvEscape(name),
+        csvEscape(EXERCISE_ID),
+        t.trialNumber,
+        t.date,
+        t.time,
+        t.score,
+        t.total,
+        t.percentage,
+        csvEscape(t.correct),
+        csvEscape(t.wrong),
+        csvEscape(t.unanswered),
+        t.takesCount,
+        t.passage
+      ].join(','));
+    });
+    return rows.join('\n');
+  }
+
+  function csvEscape(str) {
+    if (str === undefined || str === null) return '';
+    str = String(str);
+    if (str.indexOf(',') !== -1 || str.indexOf('"') !== -1 || str.indexOf('\n') !== -1) {
+      return '"' + str.replace(/"/g, '""') + '"';
+    }
+    return str;
+  }
+
+  function downloadCsv() {
+    if (trials.length === 0) { progressStatus.textContent = 'No trials to download yet.'; return; }
+    const csv = buildCsv();
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'progress_' + getStudentName() + '_' + EXERCISE_ID + '_' +
+                 new Date().toISOString().slice(0, 10) + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 1000);
+    progressStatus.textContent = '✅ CSV downloaded. You can import it into Google Sheets.';
+  }
+
+  async function buildAndDownloadZip() {
+    if (trials.length === 0) { progressStatus.textContent = 'No trials to download yet.'; return; }
+    if (typeof JSZip === 'undefined') {
+      progressStatus.textContent = 'ZIP library not loaded — please check your internet connection, or use Download CSV.';
+      return;
+    }
+    progressStatus.textContent = 'Building ZIP…';
+    const zip = new JSZip();
+    const studentName = getStudentName();
+    const dateStr = new Date().toISOString().slice(0, 10);
+
+    // 1. CSV
+    zip.file('progress.csv', buildCsv());
+
+    // 2. Per-trial JSON
+    trials.forEach(function(t) {
+      zip.file('trial_' + t.trialNumber + '_' + t.date + '_' + t.time.replace(/:/g, '-') + '.json',
+        JSON.stringify(t, null, 2));
+    });
+
+    // 3. Audio takes
+    if (takes.length > 0) {
+      const audioFolder = zip.folder('audio');
+      for (let i = 0; i < takes.length; i++) {
+        const take = takes[i];
+        try {
+          const buf = await take.blob.arrayBuffer();
+          audioFolder.file('take_' + take.id + '_passage' + take.passage + '_' +
+            take.label.replace(/:/g, '-') + '.' + take.ext, buf);
+        } catch (e) {
+          console.warn('Could not add take', take.id, e);
+        }
+      }
+    }
+
+    const blob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'progress_' + studentName + '_' + EXERCISE_ID + '_' + dateStr + '.zip';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function() { URL.revokeObjectURL(url); }, 2000);
+    progressStatus.textContent = '✅ ZIP downloaded (' + trials.length + ' trials, ' +
+      takes.length + ' audio take' + (takes.length === 1 ? '' : 's') + ').';
+    return a.download;
+  }
+
+  function emailToTeacher() {
+    if (trials.length === 0) { progressStatus.textContent = 'No trials to send yet.'; return; }
+    // Trigger ZIP download first, then open mailto
+    buildAndDownloadZip().then(function(filename) {
+      const name = (studentNameInput && studentNameInput.value.trim()) || 'a student';
+      const subject = 'CET-4 practice progress — ' + name + ' — ' + new Date().toISOString().slice(0, 10);
+      const body =
+        'Dear Teacher,\n\n' +
+        'Here is my practice progress for ' + EXERCISE_ID + '.\n\n' +
+        'I have downloaded a ZIP file called:\n' +
+        '  ' + (filename || 'progress_...zip') + '\n\n' +
+        'Please find it attached to this email. It contains my CSV of trials, ' +
+        'one JSON per trial, and any audio takes I recorded.\n\n' +
+        'Best regards,\n' + name;
+      const mailto = 'mailto:' + encodeURIComponent(TEACHER_EMAIL) +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(body);
+      window.location.href = mailto;
+      progressStatus.innerHTML =
+        '✅ ZIP downloaded. Your email app should now open — please attach the ZIP file before sending.';
+    }).catch(function(e) {
+      console.warn(e);
+      progressStatus.textContent = 'Could not build the ZIP. Try "Download CSV" instead.';
+    });
+  }
+
+  function clearHistory() {
+    if (trials.length === 0 && takes.length === 0) {
+      progressStatus.textContent = 'Nothing to clear.';
+      return;
+    }
+    if (!confirm('Clear all trial history? Audio takes are kept separately — use "Clear all" in the lab above.')) return;
+    trials = [];
+    saveTrials();
+    renderProgress();
+    progressStatus.textContent = 'History cleared.';
+  }
+
+  downloadCsvBtn.addEventListener('click', downloadCsv);
+  downloadZipBtn.addEventListener('click', buildAndDownloadZip);
+  emailBtn.addEventListener('click', emailToTeacher);
+  clearHistoryBtn.addEventListener('click', clearHistory);
+
+  /* ==========================================================
+     UTILITIES
+     ========================================================== */
+  function downloadBlob(url, filename) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  /* ==========================================================
+     INIT
+     ========================================================== */
+  updateLabText();
+  renderTakes();
+  loadTrials();
+
+})();
+</script>
+</body>
+</html>
